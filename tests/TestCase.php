@@ -17,7 +17,7 @@ use Illuminate\Testing\TestResponse;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\Assert;
 
-abstract class TestCase extends  BaseTestCase
+abstract class TestCase extends BaseTestCase
 {
     protected $sessionKey;
     protected $cookieName;
@@ -210,5 +210,16 @@ abstract class TestCase extends  BaseTestCase
             LocalizedRoutesServiceProvider::class,
             UriTranslatorServiceProvider::class,
         ];
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function defineEnvironment($app)
+    {
+        Config::set('filesystems.disks.local.serve', false);
     }
 }
