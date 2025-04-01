@@ -53,7 +53,7 @@ A convenient way to set up and use localized routes in a Laravel app.
 
 ## ✅ Requirements
 
-- PHP >= 8.1
+- PHP >= 8.2
 - Laravel >= 10
 - Composer ^2.3 (for [codezero/composer-preload-files](https://github.com/codezero-be/composer-preload-files))
 
@@ -288,13 +288,13 @@ public function resolveRouteBinding($value, $field = null)
 {
     // Default field to query if no parameter field is specified
     $field = $field ?: $this->getRouteKeyName();
-    
+
     // If the parameter field is 'slug',
     // lets query a JSON field with translations
     if ($field === 'slug') {
-        $field .= '->' . App::getLocale(); 
+        $field .= '->' . App::getLocale();
     }
-    
+
     // Perform the query to find the parameter value in the database
     return $this->where($field, $value)->firstOrFail();
 }
@@ -426,7 +426,7 @@ php artisan route:cache
 You can get the URL of your named routes as usual, using the `route()` helper.
 
 ```php
-$url = route('about'); 
+$url = route('about');
 ```
 
 If you registered an `about` route that is not localized, then `about` is an existing route name and its URL will be returned.
@@ -453,7 +453,7 @@ Let's say we have a `Post` model with a `getSlug()` method:
 public function getSlug($locale = null)
 {
     $locale = $locale ?: App::getLocale();
-    
+
     $slugs = [
         'en' => 'en-slug',
         'nl' => 'nl-slug',
@@ -481,7 +481,7 @@ You can let Laravel resolve localized parameters automatically by adding the `ge
 public function getRouteKey()
 {
     $locale = App::getLocale();
-    
+
     $slugs = [
         'en' => 'en-slug',
         'nl' => 'nl-slug',
@@ -527,7 +527,7 @@ Let's say we have a `Post` model with a `getSlug()` method:
 public function getSlug($locale = null)
 {
     $locale = $locale ?: App::getLocale();
-    
+
     $slugs = [
         'en' => 'en-slug',
         'nl' => 'nl-slug',
@@ -553,7 +553,7 @@ If you add the model's `getRouteKey()` method, you don't need to pass the parame
 public function getRouteKey()
 {
     $locale = App::getLocale();
-    
+
     $slugs = [
         'en' => 'en-slug',
         'nl' => 'nl-slug',
